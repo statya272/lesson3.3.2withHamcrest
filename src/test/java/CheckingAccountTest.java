@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 class CheckingAccountTest {
 
@@ -12,7 +14,8 @@ class CheckingAccountTest {
 
         ch.pay(amount);
 
-        Assertions.assertEquals(expBalance, ch.balance);
+//        Assertions.assertEquals(expBalance, ch.balance);
+        assertThat(ch.balance, equalTo(expBalance));
     }
 
     @Test
@@ -27,8 +30,10 @@ class CheckingAccountTest {
 
         ch.transfer(ca, amount);
 
-        Assertions.assertEquals(expChBalance, ch.balance);
-        Assertions.assertEquals(expCaBalance, ca.balance);
+//        Assertions.assertEquals(expChBalance, ch.balance);
+//        Assertions.assertEquals(expCaBalance, ca.balance);
+        assertThat(ch.balance, equalTo(expChBalance));
+        assertThat(ca.balance, equalTo(expCaBalance));
     }
 
     @Test
@@ -39,7 +44,8 @@ class CheckingAccountTest {
 
         ch.addMoney(amount);
 
-        Assertions.assertEquals(expBalance, ch.balance);
+//        Assertions.assertEquals(expBalance, ch.balance);
+        assertThat(ch.balance, equalTo(expBalance));
     }
 
     @Test
@@ -47,8 +53,7 @@ class CheckingAccountTest {
         CheckingAccount ch = new CheckingAccount();
         int amount = 100;
 
-        boolean result = ch.creditCheck(amount);
-
-        Assertions.assertFalse(result);
+//        Assertions.assertFalse(result);
+        assertThat(ch.creditCheck(amount), is(false));
     }
 }

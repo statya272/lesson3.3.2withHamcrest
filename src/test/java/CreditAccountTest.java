@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 class CreditAccountTest {
 
@@ -12,7 +14,8 @@ class CreditAccountTest {
 
         ca.addMoney(amount);
 
-        Assertions.assertEquals(expBalance, ca.balance);
+//        Assertions.assertEquals(expBalance, ca.balance);
+        assertThat(ca.balance, equalTo(expBalance));
     }
 
     @Test
@@ -20,8 +23,7 @@ class CreditAccountTest {
         CreditAccount ca = new CreditAccount();
         int amount = 200;
 
-        boolean result = ca.debitCheck(amount);
-
-        Assertions.assertFalse(result);
+//        Assertions.assertFalse(result);
+        assertThat(ca.debitCheck(amount), is(false));
     }
 }
